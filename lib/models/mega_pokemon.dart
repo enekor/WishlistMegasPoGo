@@ -1,0 +1,446 @@
+enum MegaGameGroup {
+  xy('Pokémon X y Pokémon Y', 'X/Y'),
+  oras('Pokémon Rubí Omega y Zafiro Alfa', 'RO/ZA');
+
+  final String title;
+  final String shortTitle;
+  const MegaGameGroup(this.title, this.shortTitle);
+}
+
+enum TradeState {
+  none,
+  seeking, // Busco / Wishlist
+  offering; // Ofrezco / Disponible
+
+  bool get isSelected => this != TradeState.none;
+}
+
+class MegaPokemon {
+  final String id;
+  final String name;
+  final MegaGameGroup gameGroup;
+  final int pokeApiId;
+  final String slug;
+  final int dexNumber;
+
+  const MegaPokemon({
+    required this.id,
+    required this.name,
+    required this.gameGroup,
+    required this.pokeApiId,
+    required this.slug,
+    required this.dexNumber,
+  });
+
+  String get imageUrl =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeApiId.png';
+
+  String get fallbackImageUrl =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$pokeApiId.png';
+
+  static const List<MegaPokemon> allMegas = [
+    // --- POKÉMON X Y POKÉMON Y (28 Megas) ---
+    MegaPokemon(
+      id: 'venusaur-mega',
+      name: 'Mega Venusaur',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10033,
+      slug: 'venusaur-mega',
+      dexNumber: 3,
+    ),
+    MegaPokemon(
+      id: 'charizard-mega-x',
+      name: 'Mega Charizard X',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10034,
+      slug: 'charizard-mega-x',
+      dexNumber: 6,
+    ),
+    MegaPokemon(
+      id: 'charizard-mega-y',
+      name: 'Mega Charizard Y',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10035,
+      slug: 'charizard-mega-y',
+      dexNumber: 6,
+    ),
+    MegaPokemon(
+      id: 'blastoise-mega',
+      name: 'Mega Blastoise',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10036,
+      slug: 'blastoise-mega',
+      dexNumber: 9,
+    ),
+    MegaPokemon(
+      id: 'alakazam-mega',
+      name: 'Mega Alakazam',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10037,
+      slug: 'alakazam-mega',
+      dexNumber: 65,
+    ),
+    MegaPokemon(
+      id: 'gengar-mega',
+      name: 'Mega Gengar',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10038,
+      slug: 'gengar-mega',
+      dexNumber: 94,
+    ),
+    MegaPokemon(
+      id: 'kangaskhan-mega',
+      name: 'Mega Kangaskhan',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10039,
+      slug: 'kangaskhan-mega',
+      dexNumber: 115,
+    ),
+    MegaPokemon(
+      id: 'pinsir-mega',
+      name: 'Mega Pinsir',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10040,
+      slug: 'pinsir-mega',
+      dexNumber: 127,
+    ),
+    MegaPokemon(
+      id: 'gyarados-mega',
+      name: 'Mega Gyarados',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10041,
+      slug: 'gyarados-mega',
+      dexNumber: 130,
+    ),
+    MegaPokemon(
+      id: 'aerodactyl-mega',
+      name: 'Mega Aerodactyl',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10042,
+      slug: 'aerodactyl-mega',
+      dexNumber: 142,
+    ),
+    MegaPokemon(
+      id: 'mewtwo-mega-x',
+      name: 'Mega Mewtwo X',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10043,
+      slug: 'mewtwo-mega-x',
+      dexNumber: 150,
+    ),
+    MegaPokemon(
+      id: 'mewtwo-mega-y',
+      name: 'Mega Mewtwo Y',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10044,
+      slug: 'mewtwo-mega-y',
+      dexNumber: 150,
+    ),
+    MegaPokemon(
+      id: 'ampharos-mega',
+      name: 'Mega Ampharos',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10045,
+      slug: 'ampharos-mega',
+      dexNumber: 181,
+    ),
+    MegaPokemon(
+      id: 'scizor-mega',
+      name: 'Mega Scizor',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10046,
+      slug: 'scizor-mega',
+      dexNumber: 212,
+    ),
+    MegaPokemon(
+      id: 'heracross-mega',
+      name: 'Mega Heracross',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10047,
+      slug: 'heracross-mega',
+      dexNumber: 214,
+    ),
+    MegaPokemon(
+      id: 'houndoom-mega',
+      name: 'Mega Houndoom',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10048,
+      slug: 'houndoom-mega',
+      dexNumber: 229,
+    ),
+    MegaPokemon(
+      id: 'tyranitar-mega',
+      name: 'Mega Tyranitar',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10049,
+      slug: 'tyranitar-mega',
+      dexNumber: 248,
+    ),
+    MegaPokemon(
+      id: 'blaziken-mega',
+      name: 'Mega Blaziken',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10050,
+      slug: 'blaziken-mega',
+      dexNumber: 257,
+    ),
+    MegaPokemon(
+      id: 'gardevoir-mega',
+      name: 'Mega Gardevoir',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10051,
+      slug: 'gardevoir-mega',
+      dexNumber: 282,
+    ),
+    MegaPokemon(
+      id: 'mawile-mega',
+      name: 'Mega Mawile',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10052,
+      slug: 'mawile-mega',
+      dexNumber: 303,
+    ),
+    MegaPokemon(
+      id: 'aggron-mega',
+      name: 'Mega Aggron',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10053,
+      slug: 'aggron-mega',
+      dexNumber: 304,
+    ),
+    MegaPokemon(
+      id: 'medicham-mega',
+      name: 'Mega Medicham',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10054,
+      slug: 'medicham-mega',
+      dexNumber: 308,
+    ),
+    MegaPokemon(
+      id: 'manectric-mega',
+      name: 'Mega Manectric',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10055,
+      slug: 'manectric-mega',
+      dexNumber: 310,
+    ),
+    MegaPokemon(
+      id: 'banette-mega',
+      name: 'Mega Banette',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10056,
+      slug: 'banette-mega',
+      dexNumber: 354,
+    ),
+    MegaPokemon(
+      id: 'absol-mega',
+      name: 'Mega Absol',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10057,
+      slug: 'absol-mega',
+      dexNumber: 359,
+    ),
+    MegaPokemon(
+      id: 'garchomp-mega',
+      name: 'Mega Garchomp',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10058,
+      slug: 'garchomp-mega',
+      dexNumber: 445,
+    ),
+    MegaPokemon(
+      id: 'lucario-mega',
+      name: 'Mega Lucario',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10059,
+      slug: 'lucario-mega',
+      dexNumber: 448,
+    ),
+    MegaPokemon(
+      id: 'abomasnow-mega',
+      name: 'Mega Abomasnow',
+      gameGroup: MegaGameGroup.xy,
+      pokeApiId: 10060,
+      slug: 'abomasnow-mega',
+      dexNumber: 460,
+    ),
+
+    // --- POKÉMON RUBÍ OMEGA Y ZAFIRO ALFA (22 Megas / Primigenios) ---
+    MegaPokemon(
+      id: 'beedrill-mega',
+      name: 'Mega Beedrill',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10090,
+      slug: 'beedrill-mega',
+      dexNumber: 15,
+    ),
+    MegaPokemon(
+      id: 'pidgeot-mega',
+      name: 'Mega Pidgeot',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10073,
+      slug: 'pidgeot-mega',
+      dexNumber: 18,
+    ),
+    MegaPokemon(
+      id: 'slowbro-mega',
+      name: 'Mega Slowbro',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10071,
+      slug: 'slowbro-mega',
+      dexNumber: 80,
+    ),
+    MegaPokemon(
+      id: 'steelix-mega',
+      name: 'Mega Steelix',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10072,
+      slug: 'steelix-mega',
+      dexNumber: 208,
+    ),
+    MegaPokemon(
+      id: 'sceptile-mega',
+      name: 'Mega Sceptile',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10065,
+      slug: 'sceptile-mega',
+      dexNumber: 254,
+    ),
+    MegaPokemon(
+      id: 'swampert-mega',
+      name: 'Mega Swampert',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10064,
+      slug: 'swampert-mega',
+      dexNumber: 260,
+    ),
+    MegaPokemon(
+      id: 'sableye-mega',
+      name: 'Mega Sableye',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10066,
+      slug: 'sableye-mega',
+      dexNumber: 302,
+    ),
+    MegaPokemon(
+      id: 'sharpedo-mega',
+      name: 'Mega Sharpedo',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10070,
+      slug: 'sharpedo-mega',
+      dexNumber: 319,
+    ),
+    MegaPokemon(
+      id: 'camerupt-mega',
+      name: 'Mega Camerupt',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10087,
+      slug: 'camerupt-mega',
+      dexNumber: 323,
+    ),
+    MegaPokemon(
+      id: 'altaria-mega',
+      name: 'Mega Altaria',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10067,
+      slug: 'altaria-mega',
+      dexNumber: 334,
+    ),
+    MegaPokemon(
+      id: 'glalie-mega',
+      name: 'Mega Glalie',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10074,
+      slug: 'glalie-mega',
+      dexNumber: 362,
+    ),
+    MegaPokemon(
+      id: 'salamence-mega',
+      name: 'Mega Salamence',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10089,
+      slug: 'salamence-mega',
+      dexNumber: 373,
+    ),
+    MegaPokemon(
+      id: 'metagross-mega',
+      name: 'Mega Metagross',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10076,
+      slug: 'metagross-mega',
+      dexNumber: 376,
+    ),
+    MegaPokemon(
+      id: 'latias-mega',
+      name: 'Mega Latias',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10062,
+      slug: 'latias-mega',
+      dexNumber: 380,
+    ),
+    MegaPokemon(
+      id: 'latios-mega',
+      name: 'Mega Latios',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10063,
+      slug: 'latios-mega',
+      dexNumber: 381,
+    ),
+    MegaPokemon(
+      id: 'kyogre-primal',
+      name: 'Kyogre Primigenio',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10077,
+      slug: 'kyogre-primal',
+      dexNumber: 382,
+    ),
+    MegaPokemon(
+      id: 'groudon-primal',
+      name: 'Groudon Primigenio',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10078,
+      slug: 'groudon-primal',
+      dexNumber: 383,
+    ),
+    MegaPokemon(
+      id: 'rayquaza-mega',
+      name: 'Mega Rayquaza',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10079,
+      slug: 'rayquaza-mega',
+      dexNumber: 384,
+    ),
+    MegaPokemon(
+      id: 'lopunny-mega',
+      name: 'Mega Lopunny',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10088,
+      slug: 'lopunny-mega',
+      dexNumber: 428,
+    ),
+    MegaPokemon(
+      id: 'gallade-mega',
+      name: 'Mega Gallade',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10068,
+      slug: 'gallade-mega',
+      dexNumber: 475,
+    ),
+    MegaPokemon(
+      id: 'audino-mega',
+      name: 'Mega Audino',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10069,
+      slug: 'audino-mega',
+      dexNumber: 531,
+    ),
+    MegaPokemon(
+      id: 'diancie-mega',
+      name: 'Mega Diancie',
+      gameGroup: MegaGameGroup.oras,
+      pokeApiId: 10075,
+      slug: 'diancie-mega',
+      dexNumber: 719,
+    ),
+  ];
+}
