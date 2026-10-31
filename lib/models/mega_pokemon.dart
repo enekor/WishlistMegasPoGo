@@ -24,6 +24,7 @@ class MegaPokemon {
   final int pokeApiId;
   final String slug;
   final int dexNumber;
+  final String? customImageUrl;
 
   const MegaPokemon({
     required this.id,
@@ -32,18 +33,28 @@ class MegaPokemon {
     required this.pokeApiId,
     required this.slug,
     required this.dexNumber,
+    this.customImageUrl,
   });
 
-  String get imageUrl => pokeApiId > 0
-      ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeApiId.png'
-      : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$dexNumber.png';
+  String get imageUrl {
+    if (customImageUrl != null && customImageUrl!.isNotEmpty) {
+      return customImageUrl!;
+    }
+    if (pokeApiId > 0) {
+      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeApiId.png';
+    }
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$dexNumber.png';
+  }
 
-  String get fallbackImageUrl => pokeApiId > 0
-      ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$pokeApiId.png'
-      : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$dexNumber.png';
+  String get fallbackImageUrl {
+    if (pokeApiId > 0) {
+      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$pokeApiId.png';
+    }
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$dexNumber.png';
+  }
 
   static const List<MegaPokemon> allMegas = [
-    // --- 1. POKÉMON X Y POKÉMON Y ---
+    // --- 1. POKÉMON X Y POKÉMON Y (28 Megas) ---
     MegaPokemon(
       id: 'venusaur-mega',
       name: 'Mega Venusaur',
@@ -269,7 +280,7 @@ class MegaPokemon {
       dexNumber: 460,
     ),
 
-    // --- 2. POKÉMON RUBÍ OMEGA Y ZAFIRO ALFA ---
+    // --- 2. POKÉMON RUBÍ OMEGA Y ZAFIRO ALFA (22 Megas / Primigenios) ---
     MegaPokemon(
       id: 'beedrill-mega',
       name: 'Mega Beedrill',
@@ -447,7 +458,7 @@ class MegaPokemon {
       dexNumber: 719,
     ),
 
-    // --- 3. LEYENDAS POKÉMON: Z-A ---
+    // --- 3. LEYENDAS POKÉMON: Z-A (26 Megas) ---
     MegaPokemon(
       id: 'clefable-mega',
       name: 'Mega Clefable',
@@ -580,7 +591,7 @@ class MegaPokemon {
       id: 'greninja-mega',
       name: 'Mega Greninja',
       gameGroup: MegaGameGroup.za,
-      pokeApiId: 0,
+      pokeApiId: 10117, // Ash-Greninja / Mega Form
       slug: 'greninja-mega',
       dexNumber: 658,
     ),
@@ -596,7 +607,7 @@ class MegaPokemon {
       id: 'floette-mega',
       name: 'Mega Floette',
       gameGroup: MegaGameGroup.za,
-      pokeApiId: 0,
+      pokeApiId: 10061, // Eternal Flower Floette
       slug: 'floette-mega',
       dexNumber: 670,
     ),
@@ -636,7 +647,7 @@ class MegaPokemon {
       id: 'zygarde-mega',
       name: 'Mega Zygarde',
       gameGroup: MegaGameGroup.za,
-      pokeApiId: 0,
+      pokeApiId: 10181, // Zygarde Forma Completa
       slug: 'zygarde-mega',
       dexNumber: 718,
     ),
@@ -657,12 +668,12 @@ class MegaPokemon {
       dexNumber: 870,
     ),
 
-    // --- 4. MEGADIMENSIÓN ---
+    // --- 4. MEGADIMENSIÓN (19 Megas) ---
     MegaPokemon(
       id: 'raichu-mega-x',
       name: 'Mega Raichu X',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10100, // Forma Alola
       slug: 'raichu-mega-x',
       dexNumber: 26,
     ),
@@ -686,7 +697,7 @@ class MegaPokemon {
       id: 'absol-mega-z',
       name: 'Mega Absol Z',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10057, // Mega Absol
       slug: 'absol-mega-z',
       dexNumber: 359,
     ),
@@ -702,7 +713,7 @@ class MegaPokemon {
       id: 'garchomp-mega-z',
       name: 'Mega Garchomp Z',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10058, // Mega Garchomp
       slug: 'garchomp-mega-z',
       dexNumber: 445,
     ),
@@ -710,7 +721,7 @@ class MegaPokemon {
       id: 'lucario-mega-z',
       name: 'Mega Lucario Z',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10059, // Mega Lucario
       slug: 'lucario-mega-z',
       dexNumber: 448,
     ),
@@ -742,7 +753,7 @@ class MegaPokemon {
       id: 'meowstic-mega',
       name: 'Mega Meowstic',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10025, // Female Meowstic
       slug: 'meowstic-mega',
       dexNumber: 678,
     ),
@@ -766,7 +777,7 @@ class MegaPokemon {
       id: 'magearna-mega',
       name: 'Mega Magearna',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10147, // Original Color Magearna
       slug: 'magearna-mega',
       dexNumber: 801,
     ),
@@ -798,7 +809,7 @@ class MegaPokemon {
       id: 'tatsugiri-mega',
       name: 'Mega Tatsugiri',
       gameGroup: MegaGameGroup.megadimension,
-      pokeApiId: 0,
+      pokeApiId: 10251, // Stretchy Tatsugiri
       slug: 'tatsugiri-mega',
       dexNumber: 992,
     ),

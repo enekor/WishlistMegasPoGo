@@ -82,6 +82,50 @@ class MegaCard extends StatelessWidget {
     );
   }
 
+  Widget _buildMegaBadge() {
+    if (pokemon.gameGroup != MegaGameGroup.za &&
+        pokemon.gameGroup != MegaGameGroup.megadimension) {
+      return const SizedBox.shrink();
+    }
+
+    final isZa = pokemon.gameGroup == MegaGameGroup.za;
+    final color = isZa ? Colors.amber.shade800 : Colors.teal.shade700;
+    final label = isZa ? 'MEGA Z-A' : 'MEGADIMENSIÓN';
+
+    return Positioned(
+      bottom: 0,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: color.withAlpha(120),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.bolt, size: 10, color: Colors.white),
+            const SizedBox(width: 2),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 8.5,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final borderColor = _getBorderColor(context);
@@ -150,44 +194,53 @@ class MegaCard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Imagen responsiva con Fallback
+                    // Imagen responsiva con Badge de Mega y Fallback
                     Expanded(
-                      child: Hero(
-                        tag: 'mega_${pokemon.id}',
-                        child: Image.network(
-                          pokemon.imageUrl,
-                          fit: BoxFit.contain,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: SizedBox(
-                                width: 24,
-                                height: 24,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  value: loadingProgress.expectedTotalBytes !=
-                                          null
-                                      ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes!
-                                      : null,
-                                ),
-                              ),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) {
-                            // Cargar imagen de respaldo (Home sprite)
-                            return Image.network(
-                              pokemon.fallbackImageUrl,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Hero(
+                            tag: 'mega_${pokemon.id}',
+                            child: Image.network(
+                              pokemon.imageUrl,
                               fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(
-                                Icons.catching_pokemon,
-                                size: 48,
-                                color: Colors.grey,
-                              ),
-                            );
-                          },
-                        ),
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Center(
+                                  child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      value: loadingProgress
+                                                  .expectedTotalBytes !=
+                                              null
+                                          ? loadingProgress
+                                                  .cumulativeBytesLoaded /
+                                              loadingProgress
+                                                  .expectedTotalBytes!
+                                          : null,
+                                    ),
+                                  ),
+                                );
+                              },
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.network(
+                                  pokemon.fallbackImageUrl,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(
+                                    Icons.catching_pokemon,
+                                    size: 48,
+                                    color: Colors.grey,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          _buildMegaBadge(),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 6),
