@@ -83,7 +83,9 @@ class TradeSummaryBar extends StatelessWidget {
         top: false,
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final isMobile = constraints.maxWidth < 600;
+            // Por debajo de ~900 px los contadores y el botón no caben en una
+            // sola fila, así que se apilan para evitar desbordamientos.
+            final isMobile = constraints.maxWidth < 900;
 
             return Flex(
               direction: isMobile ? Axis.vertical : Axis.horizontal,
