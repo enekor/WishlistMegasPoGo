@@ -1,6 +1,8 @@
 enum MegaGameGroup {
   xy('Pokémon X y Pokémon Y', 'X/Y'),
-  oras('Pokémon Rubí Omega y Zafiro Alfa', 'RO/ZA');
+  oras('Pokémon Rubí Omega y Zafiro Alfa', 'RO/ZA'),
+  za('Leyendas Pokémon: Z-A', 'Z-A'),
+  megadimension('Megadimensión', 'Megadimensión');
 
   final String title;
   final String shortTitle;
@@ -32,14 +34,16 @@ class MegaPokemon {
     required this.dexNumber,
   });
 
-  String get imageUrl =>
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeApiId.png';
+  String get imageUrl => pokeApiId > 0
+      ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeApiId.png'
+      : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$dexNumber.png';
 
-  String get fallbackImageUrl =>
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$pokeApiId.png';
+  String get fallbackImageUrl => pokeApiId > 0
+      ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$pokeApiId.png'
+      : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$dexNumber.png';
 
   static const List<MegaPokemon> allMegas = [
-    // --- POKÉMON X Y POKÉMON Y (28 Megas) ---
+    // --- 1. POKÉMON X Y POKÉMON Y ---
     MegaPokemon(
       id: 'venusaur-mega',
       name: 'Mega Venusaur',
@@ -265,7 +269,7 @@ class MegaPokemon {
       dexNumber: 460,
     ),
 
-    // --- POKÉMON RUBÍ OMEGA Y ZAFIRO ALFA (22 Megas / Primigenios) ---
+    // --- 2. POKÉMON RUBÍ OMEGA Y ZAFIRO ALFA ---
     MegaPokemon(
       id: 'beedrill-mega',
       name: 'Mega Beedrill',
@@ -441,6 +445,370 @@ class MegaPokemon {
       pokeApiId: 10075,
       slug: 'diancie-mega',
       dexNumber: 719,
+    ),
+
+    // --- 3. LEYENDAS POKÉMON: Z-A ---
+    MegaPokemon(
+      id: 'clefable-mega',
+      name: 'Mega Clefable',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'clefable-mega',
+      dexNumber: 36,
+    ),
+    MegaPokemon(
+      id: 'victreebel-mega',
+      name: 'Mega Victreebel',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'victreebel-mega',
+      dexNumber: 71,
+    ),
+    MegaPokemon(
+      id: 'starmie-mega',
+      name: 'Mega Starmie',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'starmie-mega',
+      dexNumber: 121,
+    ),
+    MegaPokemon(
+      id: 'dragonite-mega',
+      name: 'Mega Dragonite',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'dragonite-mega',
+      dexNumber: 149,
+    ),
+    MegaPokemon(
+      id: 'meganium-mega',
+      name: 'Mega Meganium',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'meganium-mega',
+      dexNumber: 154,
+    ),
+    MegaPokemon(
+      id: 'feraligatr-mega',
+      name: 'Mega Feraligatr',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'feraligatr-mega',
+      dexNumber: 160,
+    ),
+    MegaPokemon(
+      id: 'skarmory-mega',
+      name: 'Mega Skarmory',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'skarmory-mega',
+      dexNumber: 227,
+    ),
+    MegaPokemon(
+      id: 'froslass-mega',
+      name: 'Mega Froslass',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'froslass-mega',
+      dexNumber: 478,
+    ),
+    MegaPokemon(
+      id: 'emboar-mega',
+      name: 'Mega Emboar',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'emboar-mega',
+      dexNumber: 500,
+    ),
+    MegaPokemon(
+      id: 'excadrill-mega',
+      name: 'Mega Excadrill',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'excadrill-mega',
+      dexNumber: 530,
+    ),
+    MegaPokemon(
+      id: 'scolipede-mega',
+      name: 'Mega Scolipede',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'scolipede-mega',
+      dexNumber: 545,
+    ),
+    MegaPokemon(
+      id: 'scrafty-mega',
+      name: 'Mega Scrafty',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'scrafty-mega',
+      dexNumber: 560,
+    ),
+    MegaPokemon(
+      id: 'eelektross-mega',
+      name: 'Mega Eelektross',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'eelektross-mega',
+      dexNumber: 604,
+    ),
+    MegaPokemon(
+      id: 'chandelure-mega',
+      name: 'Mega Chandelure',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'chandelure-mega',
+      dexNumber: 609,
+    ),
+    MegaPokemon(
+      id: 'chesnaught-mega',
+      name: 'Mega Chesnaught',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'chesnaught-mega',
+      dexNumber: 652,
+    ),
+    MegaPokemon(
+      id: 'delphox-mega',
+      name: 'Mega Delphox',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'delphox-mega',
+      dexNumber: 655,
+    ),
+    MegaPokemon(
+      id: 'greninja-mega',
+      name: 'Mega Greninja',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'greninja-mega',
+      dexNumber: 658,
+    ),
+    MegaPokemon(
+      id: 'pyroar-mega',
+      name: 'Mega Pyroar',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'pyroar-mega',
+      dexNumber: 668,
+    ),
+    MegaPokemon(
+      id: 'floette-mega',
+      name: 'Mega Floette',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'floette-mega',
+      dexNumber: 670,
+    ),
+    MegaPokemon(
+      id: 'malamar-mega',
+      name: 'Mega Malamar',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'malamar-mega',
+      dexNumber: 687,
+    ),
+    MegaPokemon(
+      id: 'barbaracle-mega',
+      name: 'Mega Barbaracle',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'barbaracle-mega',
+      dexNumber: 689,
+    ),
+    MegaPokemon(
+      id: 'dragalge-mega',
+      name: 'Mega Dragalge',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'dragalge-mega',
+      dexNumber: 691,
+    ),
+    MegaPokemon(
+      id: 'hawlucha-mega',
+      name: 'Mega Hawlucha',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'hawlucha-mega',
+      dexNumber: 701,
+    ),
+    MegaPokemon(
+      id: 'zygarde-mega',
+      name: 'Mega Zygarde',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'zygarde-mega',
+      dexNumber: 718,
+    ),
+    MegaPokemon(
+      id: 'drampa-mega',
+      name: 'Mega Drampa',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'drampa-mega',
+      dexNumber: 780,
+    ),
+    MegaPokemon(
+      id: 'falinks-mega',
+      name: 'Mega Falinks',
+      gameGroup: MegaGameGroup.za,
+      pokeApiId: 0,
+      slug: 'falinks-mega',
+      dexNumber: 870,
+    ),
+
+    // --- 4. MEGADIMENSIÓN ---
+    MegaPokemon(
+      id: 'raichu-mega-x',
+      name: 'Mega Raichu X',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'raichu-mega-x',
+      dexNumber: 26,
+    ),
+    MegaPokemon(
+      id: 'raichu-mega-y',
+      name: 'Mega Raichu Y',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'raichu-mega-y',
+      dexNumber: 26,
+    ),
+    MegaPokemon(
+      id: 'chimecho-mega',
+      name: 'Mega Chimecho',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'chimecho-mega',
+      dexNumber: 358,
+    ),
+    MegaPokemon(
+      id: 'absol-mega-z',
+      name: 'Mega Absol Z',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'absol-mega-z',
+      dexNumber: 359,
+    ),
+    MegaPokemon(
+      id: 'staraptor-mega',
+      name: 'Mega Staraptor',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'staraptor-mega',
+      dexNumber: 398,
+    ),
+    MegaPokemon(
+      id: 'garchomp-mega-z',
+      name: 'Mega Garchomp Z',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'garchomp-mega-z',
+      dexNumber: 445,
+    ),
+    MegaPokemon(
+      id: 'lucario-mega-z',
+      name: 'Mega Lucario Z',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'lucario-mega-z',
+      dexNumber: 448,
+    ),
+    MegaPokemon(
+      id: 'heatran-mega',
+      name: 'Mega Heatran',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'heatran-mega',
+      dexNumber: 485,
+    ),
+    MegaPokemon(
+      id: 'darkrai-mega',
+      name: 'Mega Darkrai',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'darkrai-mega',
+      dexNumber: 491,
+    ),
+    MegaPokemon(
+      id: 'golurk-mega',
+      name: 'Mega Golurk',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'golurk-mega',
+      dexNumber: 623,
+    ),
+    MegaPokemon(
+      id: 'meowstic-mega',
+      name: 'Mega Meowstic',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'meowstic-mega',
+      dexNumber: 678,
+    ),
+    MegaPokemon(
+      id: 'crabominable-mega',
+      name: 'Mega Crabominable',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'crabominable-mega',
+      dexNumber: 740,
+    ),
+    MegaPokemon(
+      id: 'golisopod-mega',
+      name: 'Mega Golisopod',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'golisopod-mega',
+      dexNumber: 768,
+    ),
+    MegaPokemon(
+      id: 'magearna-mega',
+      name: 'Mega Magearna',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'magearna-mega',
+      dexNumber: 801,
+    ),
+    MegaPokemon(
+      id: 'zeraora-mega',
+      name: 'Mega Zeraora',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'zeraora-mega',
+      dexNumber: 807,
+    ),
+    MegaPokemon(
+      id: 'scovillain-mega',
+      name: 'Mega Scovillain',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'scovillain-mega',
+      dexNumber: 952,
+    ),
+    MegaPokemon(
+      id: 'glimmora-mega',
+      name: 'Mega Glimmora',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'glimmora-mega',
+      dexNumber: 970,
+    ),
+    MegaPokemon(
+      id: 'tatsugiri-mega',
+      name: 'Mega Tatsugiri',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'tatsugiri-mega',
+      dexNumber: 992,
+    ),
+    MegaPokemon(
+      id: 'baxcalibur-mega',
+      name: 'Mega Baxcalibur',
+      gameGroup: MegaGameGroup.megadimension,
+      pokeApiId: 0,
+      slug: 'baxcalibur-mega',
+      dexNumber: 998,
     ),
   ];
 }

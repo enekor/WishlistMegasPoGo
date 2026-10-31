@@ -7,7 +7,9 @@ enum FilterCategory {
   seeking('Buscados', 'Megas que te interesan'),
   offering('Ofrecidos', 'Megas que tienes para cambiar'),
   xy('X / Y', 'Debut en Pokémon X y Y'),
-  oras('RO / ZA', 'Debut en Rubí Omega / Zafiro Alfa');
+  oras('RO / ZA', 'Debut en Rubí Omega / Zafiro Alfa'),
+  za('Z-A', 'Leyendas Pokémon: Z-A'),
+  megadimension('Megadimensión', 'Megadimensión');
 
   final String label;
   final String description;
@@ -142,6 +144,10 @@ class MegaTradeProvider extends ChangeNotifier {
           return pokemon.gameGroup == MegaGameGroup.xy;
         case FilterCategory.oras:
           return pokemon.gameGroup == MegaGameGroup.oras;
+        case FilterCategory.za:
+          return pokemon.gameGroup == MegaGameGroup.za;
+        case FilterCategory.megadimension:
+          return pokemon.gameGroup == MegaGameGroup.megadimension;
       }
     }).toList();
   }

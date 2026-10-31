@@ -91,6 +91,9 @@ class _MegaWishlistScreenState extends State<MegaWishlistScreen> {
   Widget build(BuildContext context) {
     final xyList = _provider.getFilteredList(MegaGameGroup.xy);
     final orasList = _provider.getFilteredList(MegaGameGroup.oras);
+    final zaList = _provider.getFilteredList(MegaGameGroup.za);
+    final megadimensionList =
+        _provider.getFilteredList(MegaGameGroup.megadimension);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -286,8 +289,97 @@ class _MegaWishlistScreenState extends State<MegaWishlistScreen> {
               ),
             ],
 
+            // SECCIÓN 3: Leyendas Pokémon: Z-A
+            if (zaList.isNotEmpty) ...[
+              SliverToBoxAdapter(
+                child: _SectionHeader(
+                  title: MegaGameGroup.za.title,
+                  subtitle: '${zaList.length} MegaEvoluciones',
+                  icon: Icons.bolt,
+                  badgeColor: Colors.amber.shade700,
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverLayoutBuilder(
+                  builder: (context, constraints) {
+                    final cols =
+                        _calculateCrossAxisCount(constraints.crossAxisExtent);
+                    return SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: cols,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 0.8,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          final mega = zaList[index];
+                          final state = _provider.getState(mega.id);
+                          return MegaCard(
+                            pokemon: mega,
+                            state: state,
+                            onTap: () => _provider.cycleState(mega.id),
+                            onStateSelected: (newState) =>
+                                _provider.setTradeState(mega.id, newState),
+                          );
+                        },
+                        childCount: zaList.length,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+
+            // SECCIÓN 4: Megadimensión
+            if (megadimensionList.isNotEmpty) ...[
+              SliverToBoxAdapter(
+                child: _SectionHeader(
+                  title: MegaGameGroup.megadimension.title,
+                  subtitle: '${megadimensionList.length} MegaEvoluciones',
+                  icon: Icons.blur_on,
+                  badgeColor: Colors.teal.shade600,
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverLayoutBuilder(
+                  builder: (context, constraints) {
+                    final cols =
+                        _calculateCrossAxisCount(constraints.crossAxisExtent);
+                    return SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: cols,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 0.8,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          final mega = megadimensionList[index];
+                          final state = _provider.getState(mega.id);
+                          return MegaCard(
+                            pokemon: mega,
+                            state: state,
+                            onTap: () => _provider.cycleState(mega.id),
+                            onStateSelected: (newState) =>
+                                _provider.setTradeState(mega.id, newState),
+                          );
+                        },
+                        childCount: megadimensionList.length,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+
             // En caso de resultado vacío por filtro
-            if (xyList.isEmpty && orasList.isEmpty)
+            if (xyList.isEmpty &&
+                orasList.isEmpty &&
+                zaList.isEmpty &&
+                megadimensionList.isEmpty)
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Center(
